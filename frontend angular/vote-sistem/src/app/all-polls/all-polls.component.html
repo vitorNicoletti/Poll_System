@@ -1,0 +1,34 @@
+<div id="geral">
+
+    <h1>Em Andamento</h1>
+    <div class="categoria">
+        
+        @for (poll of emAndamento(); track poll.id) {
+            
+            <app-poll-card [title]="poll.title" [startDate]="poll.start_date" [endDate]="poll.end_date"[id]="poll.id"></app-poll-card>
+        
+        }
+    
+
+    </div>
+    <h1>Não Iniciadas</h1>
+    <div class="categoria">
+        
+        @for (poll of naoIniciadas(); track poll.id) {
+            
+            <app-poll-card [title]="poll.title" [startDate]="poll.start_date" [endDate]="poll.end_date" [id]="poll.id"></app-poll-card>
+        
+        }
+    
+    </div>
+    <h1>Finalizadas</h1>
+    <div class="categoria">
+        
+        @for (poll of finalizadas(); track poll.id) {
+            
+            <app-poll-card [title]="poll.title" [startDate]="poll.start_date" [endDate]="poll.end_date"[id]="poll.id"></app-poll-card>
+        
+        }
+    </div>
+</div>
+

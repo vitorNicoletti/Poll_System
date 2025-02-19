@@ -1,0 +1,68 @@
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.categoria {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os cards */
+    border: 1px solid #e1e1e1; /* Borda sutil */
+    padding: 30px;
+    background-color: #fafafa; 
+    border-radius: 10px;
+    margin-bottom: 40px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.categoria h1 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+app-poll-card {
+    width: 30%;
+    min-width: 250px;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra no card */
+    transition: transform 0.3s ease; /* Animação suave */
+}
+
+app-poll-card:hover {
+    transform: translateY(-10px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    app-poll-card {
+        width: 48%; /* 2 cards por linha em telas médias */
+    }
+}
+
+@media (max-width: 768px) {
+    app-poll-card {
+        width: 100%; /* 1 card por linha em telas menores */
+    }
+}
+
+#geral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    background-color: #ecf0f1; /* Fundo claro para o container geral */
+}
+
+#geral h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2980b9;
+    margin-bottom: 40px;
+}

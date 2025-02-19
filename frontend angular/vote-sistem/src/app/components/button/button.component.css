@@ -1,0 +1,40 @@
+.button-9 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #405cf5;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 1px 3px, rgba(0, 0, 0, 0.1) 0 1px 2px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  
+  height: 100%; /* Ajustar conforme necessário */
+  line-height: 1.15;
+  margin: 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0px 16px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all 0.2s, box-shadow 0.08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  display: block;
+  font-size: larger;
+}
+
+.button-9:focus {
+  box-shadow: rgba(50, 151, 211, 0.4) 0 0 0 3px; /* Efeito de foco alinhado ao botão */
+  outline: none; /* Remove bordas padrão do foco */
+}
+
+.button-9:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
