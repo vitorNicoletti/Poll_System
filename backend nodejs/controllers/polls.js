@@ -83,9 +83,11 @@ const vote = async (req,res) =>{
 }
 const getPoll = async (req,res)=>{
     const {id:pollId} = req.params
-    pollInfo = await Poll.getPollByID(pollId);
+    let pollInfo = await Poll.getPollByID(pollId);
     pollInfo = pollInfo[0]
-   
+    if(!pollInfo){
+        return badRequest(res,'this poll doesnt exist')
+    }
     pollOptions = await Option.getPollOptions(pollId)
     res.status(200).json({
         title: pollInfo.title,

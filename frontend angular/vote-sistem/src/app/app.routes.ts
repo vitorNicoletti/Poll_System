@@ -11,6 +11,15 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'contatos',
+        pathMatch: 'full',
+        loadComponent: () => {
+            return import('./reach-out/reach-out.component').then(
+                m => m.ReachOutComponent
+            )
+        }
+    },
+    {
         path: ':id',
         pathMatch: 'full',
         loadComponent: () => {
@@ -19,6 +28,8 @@ export const routes: Routes = [
             )
         }
     }
+
+
 
 
 
