@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "a6e069dc-2356-4a26-90e1-0cf3315fbd92",
+		"name": "FULL CRUD + VOTE REQUISITIONS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41596569"
+	},
+	"item": [
+		{
+			"name": "Create Poll",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"dontcare\",\r\n    \"start_date\":\"2022-02-02 00:00:00\",\r\n    \"end_date\":\"2024-02-02 00:00:00\",\r\n    \"options\":[\"Opcao1\",\"Opcao2\",\"Opcao3\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/polls/",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"polls",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Polls",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Poll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/polls/13/",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"polls",
+						"13",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Poll",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titasfle\":\"Big Poggers Jogos\",\r\n    \"title\": \"asadsfasdfsadsadfasdasfdafasdasffasdfadf\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/polls/11/",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"polls",
+						"11",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Poll",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/polls/18333333333/",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"polls",
+						"18333333333",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Option",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pollId\":17,\r\n    \"title\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/options/",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"options",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Option",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"option_text\": \"resposta numero 3\",\r\n    \"votes\":1234\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/options/22",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"options",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Option",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/options/24",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"options",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"optionId\":26\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/polls/19/vote",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"polls",
+						"19",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
