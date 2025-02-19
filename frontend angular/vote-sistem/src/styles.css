@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+html, body { 
+    margin: 0;
+    padding:0;
+    background-color: rgba(249, 251, 253)
+}
+header{
+    height: 15%;
+}
+
+* {
+    outline: 0px;
+}

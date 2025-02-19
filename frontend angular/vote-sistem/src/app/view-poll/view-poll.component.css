@@ -1,0 +1,130 @@
+#page {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#card {
+    background-color: ghostwhite;
+    width: 30%;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); 
+    border-radius: 30px;
+    padding: 30px;
+    margin-top: 50px;
+    transition: all 0.3s ease;
+}
+
+h1 {
+    overflow-wrap: break-word;
+}
+
+app-button {
+    display: block;
+    height: 50px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: x-large;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    gap: 10px; 
+    white-space: normal;
+}
+
+.votes {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: right; 
+    flex-shrink: 0; 
+}
+
+.option-text {
+    max-width: 100%;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); 
+    flex: 1; 
+    word-break: break-word;
+    overflow-wrap: break-word;
+    cursor: pointer;
+}
+
+.radio {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #101f30; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+}
+
+.radio:checked {
+    background-color: #1f2329; 
+    border: 5px solid white;
+    box-shadow: 0 0 5px #101f30;
+}
+
+
+@media (max-width: 1024px) {
+    #card {
+        width: 50%; 
+        padding: 20px;
+    }
+
+    .option {
+        font-size: 1.2rem; 
+    }
+
+    .votes {
+        min-width: 60px; 
+    }
+}
+
+@media (max-width: 768px) {
+    #card {
+        width: 80%; 
+        padding: 15px;
+    }
+
+    .option {
+        font-size: 1rem;
+
+    }
+
+    .votes {
+        min-width: 50px; 
+    }
+
+    .radio {
+        width: 18px;
+        height: 18px;
+    }
+
+    app-button {
+        width: 100%; 
+    }
+}
+
+@media (max-width: 480px) {
+    #card {
+        width: 90%; 
+    }
+
+    .option {
+        font-size: 1rem; 
+
+    }
+}
