@@ -28,18 +28,30 @@ const formatBodyToUpdate = (body,keysAllowed)=>{
 }
 const updatePoll = async (req, res) => {
     const {id:pollId} = req.params
-    error = await checkIfPollExists(res, pollId)
-    if (error){return error}
+
+    const currentPoll = await Poll.getPollByID(pollId)
+
+    if(currentPoll.length == 0){
+        return badRequest(res,'this poll dont exist')
+    }
+
     const update = formatBodyToUpdate(req.body,pollFieldList)
     if (Object.keys(update).length == 0 ){
         return badRequest(res,'No Valid Fields')
     }
     if(update.start_date || update.end_date){
-        const startDate = update.start_date || currentPoll[0].startDate
-        const endDate = update.end_date || currentPoll[0].endDate
-        if(!isValidEndStartDates(startDate,endDate)){
+        
+        const startDate = update.start_date || currentPoll[0].start_date.toISOString()
+        const endDate = update.end_date || currentPoll[0].end_date.toISOString()
+        console.log("Raw dates from DB:", currentPoll[0].start_date, currentPoll[0].end_date)
+        const dates = isValidEndStartDates(startDate,endDate)
+        
+        if(dates.length == 0){
+            
             return badRequest(res,'Please Provide valid dates')
         }
+        update.start_date = dates[0];
+        update.end_date = dates[1];
     }
     await Poll.updatePoll(update,pollId)
     const updatedPoll = await Poll.getPollByID(pollId)
@@ -50,6 +62,7 @@ const updatePoll = async (req, res) => {
 }
 const vote = async (req,res) =>{
     const {optionId} = req.body
+    const {id:pollId} = req.params;
     if(!optionId){
         return badRequest(res,'Please Provide the option ID')
     }
@@ -59,8 +72,10 @@ const vote = async (req,res) =>{
         return badRequest(res,"This option don't exist")
     }
   
-
-    const pollId = option[0].id_poll
+    if(option[0].id_poll != pollId){
+        return badRequest(res,"Option provided is not from poll")
+    }
+    
     const pollInfo = await Poll.getPollByID(pollId)
     console.log(pollInfo)
     const pollOptions = await Option.getPollOptions(pollId)
@@ -115,7 +130,7 @@ const createPoll = async (req,res)=>{
     if (!end_date) {
         return badRequest(res,'Please provide an end date for the poll.')
     }
-    if (!isValidEndStartDates(start_date,end_date)){
+    if (isValidEndStartDates(start_date,end_date).length == 0){
         return badRequest(res,'Please provide a valid intervall.')
     }
     if (!options || !(Array.isArray(options)) || options.length < 3) {
@@ -150,15 +165,42 @@ const checkIfPollExists = async (res,idPoll)=>{
     }
 
 }
-const StringToDateTime = (dateStart,dateEnd)=>{
-    const date1 = DateTime.fromFormat(dateStart, 'yyyy-MM-dd HH:mm:ss')
-    const date2 = DateTime.fromFormat(dateEnd, 'yyyy-MM-dd HH:mm:ss')
-    return [date1,date2]
-}
-const isValidEndStartDates = (dateStart,dateEnd)=>{
-    const [date1, date2] = StringToDateTime(dateStart,dateEnd);
-    return date1.isValid && date2.isValid && (date1 < date2)
-}
+const StringToDateTime = (dateStart, dateEnd) => {
+
+    let date1 = DateTime.fromISO(dateStart);
+    let date2 = DateTime.fromISO(dateEnd);
+
+    if(!date1.isValid){
+        date1 = DateTime.fromFormat(dateStart,'yyyy-MM-dd HH:mm:ss')
+    }
+    if(!date2.isValid){
+        date2 = DateTime.fromFormat(dateEnd,'yyyy-MM-dd HH:mm:ss')
+    }
+    if(!(date1.isValid && date2.isValid)){
+        return []
+    }
+    console.log(date1);
+    console.log(date2);
+    return [date1, date2];
+};
+
+const isValidEndStartDates = (dateStart, dateEnd) => {
+    let [date1, date2] = StringToDateTime(dateStart, dateEnd);
+    console.log('is valid')
+    if(!(date1 && date2)){
+        console.log('is valid2')
+        return []
+    }
+    if (date1.isValid && date2.isValid && (date1 < date2)) {
+        date1 = date1.toFormat('yyyy-MM-dd HH:mm:ss');
+        date2 = date2.toFormat('yyyy-MM-dd HH:mm:ss');
+        return [date1, date2];
+    } else {
+        console.log('is valid3')
+        return [];
+    }
+};
+
 const isPollActive = (dateStart,dateEnd)=>{
     return ((dateStart <= DateTime.now()) && (DateTime.now() < dateEnd))
 }

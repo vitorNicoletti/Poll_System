@@ -65,7 +65,7 @@ export class ViewPollComponent {
   }
 
   sendVote(){
-    this.pollService.sendVote(this.selectedOption).pipe(
+    this.pollService.sendVote(this.pollId,this.selectedOption).pipe(
       catchError((err) => {
         console.log(err);
         throw err;

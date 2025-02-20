@@ -15,8 +15,8 @@ export class PollsService {
     const url = `http://localhost:3000/api/v1/polls/${id}`;
     return this.http.get<Poll>(url);
   }
-  sendVote(id:number){
-    const url = `http://localhost:3000/api/v1/polls/${id}/vote`
-    return this.http.put(url,{optionId:id})
+  sendVote(pollID:number,optionId:number){
+    const url = `http://localhost:3000/api/v1/polls/${pollID}/vote`
+    return this.http.put(url,{optionId:optionId})
   }
 }
